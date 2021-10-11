@@ -1,0 +1,38 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Registrar.Models.Department;
+
+<h2>Department Details</h2>
+
+<h3>@Model.Name</h3>
+
+@if (@Model.StudentJoinEntities.Count == 0)
+{
+  <p>there are no students currently in this department</p>
+}
+else
+{
+  <h3>this department has the following students enrolled:</h3>
+  <ul>
+    @foreach(var join in Model.StudentJoinEntities)
+    {
+      <li>@join.Student.Name</li>
+    }
+  </ul>
+}
+@if (@Model.CourseJoinEntities.Count == 0)
+{
+  <p>there are no students currently in this department</p>
+}
+else
+{
+  <h3>this department has the following students enrolled:</h3>
+  <ul>
+    @foreach(var join in Model.CourseJoinEntities)
+    {
+      <li>@join.Course.Name</li>
+    }
+  </ul>
+}

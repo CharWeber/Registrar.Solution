@@ -97,5 +97,25 @@ namespace Registrar.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
+        [HttpPost]
+    public ActionResult AddDepartment(Course Course, int DepartmentId)
+    {
+      if (DepartmentId != 0)
+      {
+        _db.CourseDepartment.Add(new CourseDepartment() { DepartmentId = DepartmentId, CourseId = Course.CourseId });
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    public ActionResult DeleteDepartment(int joinId)
+    {
+      var joinEntry = _db.CourseDepartment.FirstOrDefault(entry => entry.CourseDepartmentId == joinId);
+      _db.CourseDepartment.Remove(joinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }

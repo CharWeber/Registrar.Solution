@@ -1,0 +1,20 @@
+@{
+  Layout = "_Layout";
+}
+@using Registrar.Models
+
+<h1>Department List</h1>
+
+@if (Model.Count == 0)
+{
+  <p>there are no departments yet registered</p>
+}
+
+<ul>
+  @foreach (Department department in Model)
+  {
+    <li>@Html.ActionLink($"{department.Name}", "Details", new {id = department.DepartmentId})</li>
+  }
+</ul>
+<p>@Html.ActionLink("Register new Department", "Create")</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
