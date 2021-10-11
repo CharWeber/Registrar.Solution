@@ -3,7 +3,7 @@
 ### by charlie ben and Anna Clarke
 
 <p align="center">
-  <img src="/">  
+  <img src="/Registrar.Solution/database.png">  
 </p>
 
 ## Technologies Used
@@ -19,7 +19,7 @@
 
 ## Description
 
-This web application will allow users to create horror subgenres to organize their horror movie watch list. They can then add movies to each subgenre, giving each one a rating, number of stars, release year etc. Users can edit movies and search for a movie by title.
+
 
 ### Technology Requirements
 
@@ -39,11 +39,11 @@ This web application will allow users to create horror subgenres to organize the
   }
 }
 ```
-* _
 * _open new terminal and run SQL ($ mysql -uroot -p{your_password})_
 * _open MySQL Workbench_
 * _In terminal, navigate into Registrar.Solution/Registrar/ and enter the command $ dotnet restore, to install necessary packages_
 * _enter command $ dotnet build, to build program_
+
 * _enter command $ dotnet run, to view program in your browser_
 
   

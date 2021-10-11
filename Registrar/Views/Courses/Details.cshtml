@@ -1,0 +1,37 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Registrar.Models.Course;
+
+<h2>Course Details</h2>
+
+<h3>@Model.Name</h3>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This course has no students registered</p>
+}
+else
+{
+  <h3>The following students are registered</h3>
+  <ul>
+  @foreach(var join in Model.JoinEntities)
+  {
+    <li>@join.Student.Name</li>
+  }
+  </ul>
+}
+@* <!-- 
+@if() -->
+@using (Html.BeginForm("AddStudent", "Courses"));
+{
+  @Html.HiddenFor(model => model.CourseId)
+
+  @Html.Label("Select Student")
+  @Html.DropDownList("StudentId")
+
+  <input type="submit" value="save"/>
+} *@
+
+<p>@Html.ActionLink("See all Courses", "Index")</p>
