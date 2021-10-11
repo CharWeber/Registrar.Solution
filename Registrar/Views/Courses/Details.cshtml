@@ -8,6 +8,8 @@
 
 <h3>@Model.Name</h3>
 
+<h3>@Model.Number</h3>
+
 @if(@Model.JoinEntities.Count == 0)
 {
   <p>This course has no students registered</p>
@@ -19,19 +21,32 @@ else
   @foreach(var join in Model.JoinEntities)
   {
     <li>@join.Student.Name</li>
+    @using (Html.BeginForm("DeleteStudent", "Courses"))
+    {
+      @Html.Hidden("joinId", @join.CourseStudentId)
+      <input type="submit" value="Drop Student from Course"/>
+    }
   }
   </ul>
 }
-@* <!-- 
-@if() -->
-@using (Html.BeginForm("AddStudent", "Courses"));
+
+@if(ViewBag.NoStudents)
 {
-  @Html.HiddenFor(model => model.CourseId)
+  <p>There are no students currently enrolled at this school...</p>
+}
+else
+{
+  @using (Html.BeginForm("AddStudent", "Courses"))
+  {
+    @Html.HiddenFor(model => model.CourseId)
 
-  @Html.Label("Select Student")
-  @Html.DropDownList("StudentId")
+    @Html.Label("Select Student")
+    @Html.DropDownList("StudentId")
 
-  <input type="submit" value="save"/>
-} *@
+    <input type="submit" value="save"/>
+  }
+}
 
 <p>@Html.ActionLink("See all Courses", "Index")</p>
+<p>@Html.ActionLink("Edit this course", "Edit", new { id = Model.CourseId })</p>
+<p>@Html.ActionLink("Delete this course", "Delete", new { id = Model.CourseId })</p>

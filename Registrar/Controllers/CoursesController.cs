@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Registrar.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,10 +37,13 @@ namespace Registrar.Controllers
 
     public ActionResult Details(int id)
     {
+      ViewBag.NoStudents = _db.Students.ToList().Count == 0;
+      ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "Name");
       var thisCourse = _db.Courses
         .Include(course => course.JoinEntities)
         .ThenInclude(join => join.Student)
         .FirstOrDefault(course => course.CourseId == id);
+        
       return View(thisCourse);
     }
 
