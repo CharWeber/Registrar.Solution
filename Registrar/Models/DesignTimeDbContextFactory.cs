@@ -5,7 +5,7 @@ using System.IO;
 
 namespace Registrar.Models
 {
-  public class RegistrarContextFactory : IDesignTimeDbContextFactory<ToDoListContext>
+  public class RegistrarContextFactory : IDesignTimeDbContextFactory<RegistrarContext>
   {
 
     RegistrarContext IDesignTimeDbContextFactory<RegistrarContext>.CreateDbContext(string[] args)
@@ -19,7 +19,7 @@ namespace Registrar.Models
 
       builder.UseMySql(configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(configuration["ConnectionStrings:DefaultConnection"]));
 
-      return new ToDoListContext(builder.Options);
+      return new RegistrarContext(builder.Options);
     }
   }
 }
