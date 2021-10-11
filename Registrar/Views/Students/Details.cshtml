@@ -10,7 +10,7 @@
 
 <h3>@Model.EnrollDate</h3>
 
-@if(@Model.JoinEntities.Count == 0)
+@if(@Model.CourseJoinEntities.Count == 0)
 {
   <p>This student is not currently registered for any courses</p>
 }
@@ -18,7 +18,7 @@ else
 {
   <h3>This student is registered for the following courses:</h3>
   <ul>
-  @foreach(var join in Model.JoinEntities)
+  @foreach(var join in Model.CourseJoinEntities)
   {
     <li>@join.Course.Name : @join.Course.Number</li>
     @using (Html.BeginForm("DeleteCourse", "Students"))

@@ -40,8 +40,10 @@ namespace Registrar.Controllers
       ViewBag.NoStudents = _db.Students.ToList().Count == 0;
       ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "Name");
       var thisCourse = _db.Courses
-        .Include(course => course.JoinEntities)
+        .Include(course => course.StudentJoinEntities)
         .ThenInclude(join => join.Student)
+        .Include(course => course.DepartmentJoinEntities)
+        .ThenInclude(join => join.Department)
         .FirstOrDefault(course => course.CourseId == id);
         
       return View(thisCourse);
