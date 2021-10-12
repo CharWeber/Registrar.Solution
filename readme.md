@@ -1,10 +1,6 @@
-# Registrarararara
+# Registrar
 
 ### by Charlie Weber, Ben Wilson, and Anna Clarke
-
-<p align="center">
-  <img src="Registrar/wwwroot/img/readme-cheese">  
-</p>
 
 ## Technologies Used
 
@@ -57,13 +53,11 @@ _[GPL](https://opensource.org/licenses/gpl-license)_
 
 ## Contact Information
 
+Anna Clarke: <anclarkie@gmail.com>  
+Ben Wilson: <benjaminw1030@gmail.com>  
+Charles Weber <charlesweber@gmail.com>
 
 ## Photos
 Photo by <a href="https://unsplash.com/@willvanw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Will van Wingerden</a> on <a href="https://unsplash.com/s/photos/library?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-Photo by <a href="https://unsplash.com/@mrthetrain?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Joshua Hoehne</a> on <a href="https://unsplash.com/s/photos/graduation?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-  
 
-foreach: join(for dept and course)
-  foreach: join(for course and student)
-    if completed return false
-    else: display "no students have completed a course in this dept"
+Photo by <a href="https://unsplash.com/@mrthetrain?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Joshua Hoehne</a> on <a href="https://unsplash.com/s/photos/graduation?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
