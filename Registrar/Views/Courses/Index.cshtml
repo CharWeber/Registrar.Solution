@@ -10,12 +10,11 @@
   <p>there are no courses added for this semester</p>
 }
 
-<ul>
+<p>
 @foreach (Course course in Model)
 {
-  <li>@Html.ActionLink($"{course.Name}", "Details", new {id = course.CourseId})</li>
+  @Html.ActionLink($"{course.Name}", "Details", new {id = course.CourseId})<br>
 }
-</ul>
-
-<p>@Html.ActionLink("Add new Course", "Create")</p>
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
+</p>
+<hr>
+<button class="btn btn-secondary"><a href="~/Courses/Create">Add a new course</a></button>

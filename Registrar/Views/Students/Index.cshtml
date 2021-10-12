@@ -10,12 +10,11 @@
   <p>there are no Students enrolled for this semester</p>
 }
 
-<ul>
+<p>
 @foreach (Student student in Model)
 {
-  <li>@Html.ActionLink($"{student.Name}", "Details", new {id = student.StudentId})</li>
+  @Html.ActionLink($"{student.Name}", "Details", new {id = student.StudentId})<br>
 }
-</ul>
+</p>
 
-<p>@Html.ActionLink("Register new Student", "Create")</p>
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
+<button class="btn btn-secondary"><a href="~/Students/Create">Add a new student</a></button>

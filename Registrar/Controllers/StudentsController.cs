@@ -117,5 +117,14 @@ namespace Registrar.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
+    [HttpPost]
+    public ActionResult CompleteCourse(int joinId)
+    {
+      var joinEntry = _db.CourseStudent.FirstOrDefault(entry => entry.CourseStudentId == joinId);
+      joinEntry.Completed = true;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }

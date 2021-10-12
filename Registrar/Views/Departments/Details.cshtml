@@ -27,6 +27,24 @@ else
     }
   </ul>
 }
+
+  @if (ViewBag.NoStudents)
+  {
+    <p>No students have been created yet.</p>
+  }
+  else
+  {
+    @using (Html.BeginForm("AddStudent", "Departments"))
+    {
+      @Html.HiddenFor(model => model.DepartmentId)
+
+      @Html.Label("Add Student")
+      @Html.DropDownList("StudentId")
+
+      <input type="submit" value="Add Student"/>
+    }
+  }
+
 @if (@Model.CourseJoinEntities.Count == 0)
 {
   <p>there are no courses currently in this department</p>
@@ -45,6 +63,23 @@ else
       }
     }
   </ul>
+}
+
+@if (ViewBag.NoCourses)
+{
+  <p>No courses have been created yet.</p>
+}
+else
+{
+  @using (Html.BeginForm("AddCourse", "Departments"))
+  {
+    @Html.HiddenFor(model => model.DepartmentId)
+
+    @Html.Label("Add Course")
+    @Html.DropDownList("CourseId")
+
+    <input type="submit" value="Add Course"/>
+  }
 }
 
 <p>@Html.ActionLink("See all Departments", "Index")</p>
