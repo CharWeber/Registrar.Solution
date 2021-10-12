@@ -51,6 +51,66 @@ namespace Registrar.Controllers
       return View(_db.Departments.FirstOrDefault(department => department.DepartmentId == id));
     }
 
-    
+    [HttpPost]
+    public ActionResult Edit(Department department)
+    {
+      _db.Entry(department).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    public ActionResult Delete(int id)
+    {
+      return View(_db.Departments.FirstOrDefault(department => department.DepartmentId == id));
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      var thisDepartment = _db.Departments.FirstOrDefault(department => department.DepartmentId == id);
+      _db.Departments.Remove(thisDepartment);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    public ActionResult AddStudent(Department Department, int StudentId)
+    {
+      if (StudentId != 0)
+      {
+        _db.DepartmentStudent.Add(new DepartmentStudent() { StudentId = StudentId, DepartmentId = Department.DepartmentId });
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    public ActionResult DeleteStudent(int joinId)
+    {
+      var joinEntry = _db.DepartmentStudent.FirstOrDefault(entry => entry.DepartmentStudentId == joinId);
+      _db.DepartmentStudent.Remove(joinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    public ActionResult AddCourse(Department Department, int CourseId)
+    {
+      if (CourseId != 0)
+      {
+        _db.CourseDepartment.Add(new CourseDepartment() { CourseId = CourseId, DepartmentId = Department.DepartmentId });
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    public ActionResult DeleteCourse(int joinId)
+    {
+      var joinEntry = _db.CourseDepartment.FirstOrDefault(entry => entry.CourseDepartmentId == joinId);
+      _db.CourseDepartment.Remove(joinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }

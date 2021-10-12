@@ -38,7 +38,9 @@ namespace Registrar.Controllers
     public ActionResult Details(int id)
     {
       ViewBag.NoStudents = _db.Students.ToList().Count == 0;
+      ViewBag.NoDepartments = _db.Departments.ToList().Count == 0;
       ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "Name");
+      ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "Name");
       var thisCourse = _db.Courses
         .Include(course => course.StudentJoinEntities)
         .ThenInclude(join => join.Student)
@@ -98,7 +100,7 @@ namespace Registrar.Controllers
       return RedirectToAction("Index");
     }
 
-        [HttpPost]
+    [HttpPost]
     public ActionResult AddDepartment(Course Course, int DepartmentId)
     {
       if (DepartmentId != 0)

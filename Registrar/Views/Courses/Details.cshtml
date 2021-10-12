@@ -16,8 +16,8 @@
 }
 else
 {
-  <h3>The following students are registered</h3>
-  <ul>
+  <h4>The following students are registered</h4>
+  <ul class="mx-auto">
   @foreach(var join in Model.StudentJoinEntities)
   {
     <li>@join.Student.Name</li>
@@ -40,10 +40,37 @@ else
   {
     @Html.HiddenFor(model => model.CourseId)
 
-    @Html.Label("Select Student")
+    @Html.Label("Add Student ")
     @Html.DropDownList("StudentId")
 
     <input type="submit" value="save"/>
+  }
+}
+@if(ViewBag.NoDepartments)
+{
+  <p>This course is not yet designated to a department</p>
+}
+else
+{
+  <br>
+  <p>This course is part of the following departments</p>
+  @foreach (var join in Model.DepartmentJoinEntities)
+  {
+  <p>@join.Department.Name</p>
+    @using (Html.BeginForm("DeleteDepartment", "Courses"))
+    {
+      @Html.Hidden("joinId", @join.CourseDepartmentId)
+      <input type="submit" value="Drop Department from Course"/>
+    }
+  }
+  @using (Html.BeginForm("AddDepartment", "Courses"))
+  {
+    @Html.HiddenFor(model => model.CourseId)
+
+    @Html.Label("Add Department ")
+    @Html.DropDownList("DepartmentId")
+
+    <input type="submit" value="Declare Department"/>
   }
 }
 

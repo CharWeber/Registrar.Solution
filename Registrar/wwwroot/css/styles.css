@@ -1,3 +1,18 @@
 body{
   text-align: center;
 }
+
+#footer {
+	position:fixed;
+	bottom:0px;
+	left:0px;
+	width:100%;
+	color:rgb(210, 0, 0);
+	background:hsl(42, 81%, 57%);
+	padding:8px;
+}
+
+ul
+{
+list-style: none;  
+}

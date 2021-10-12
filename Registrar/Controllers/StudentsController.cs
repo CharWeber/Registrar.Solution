@@ -37,7 +37,9 @@ namespace Registrar.Controllers
     public ActionResult Details(int id)
     {
       ViewBag.CourseId = new SelectList(_db.Courses, "CourseId", "Name");
+      ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "Name");
       ViewBag.NoCourses = _db.Courses.ToList().Count == 0;
+      ViewBag.NoDepartments = _db.Departments.ToList().Count == 0;
       var thisStudent = _db.Students
         .Include(student => student.CourseJoinEntities)
         .ThenInclude(join => join.Course)
@@ -92,6 +94,26 @@ namespace Registrar.Controllers
     {
       var joinEntry = _db.CourseStudent.FirstOrDefault(entry => entry.CourseStudentId == joinId);
       _db.CourseStudent.Remove(joinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    public ActionResult AddDepartment(Student student, int DepartmentId)
+    {
+      if (DepartmentId != 0)
+      {
+        _db.DepartmentStudent.Add(new DepartmentStudent() {StudentId = student.StudentId, DepartmentId = DepartmentId});
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    public ActionResult DeleteDepartment(int joinId)
+    {
+      var joinEntry = _db.DepartmentStudent.FirstOrDefault(entry => entry.DepartmentStudentId == joinId);
+      _db.DepartmentStudent.Remove(joinEntry);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
