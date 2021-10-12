@@ -1,5 +1,7 @@
 # Registrar
 
+A University registrar that tracks departments, courses, and students.
+
 ### by Charlie Weber, Ben Wilson, and Anna Clarke
 
 ## Technologies Used
@@ -14,7 +16,7 @@
 
 
 ## Description
-
+This web application will allow the user to create departments, courses, and students. The user will be able to add courses to departments, add students to courses, and add students to departments. All models have full CRUD functionality. There are three many to many relationships. User has the ability to mark a course as complete and check if a department has no completed courses.
 
 
 ### Technology Requirements
@@ -35,11 +37,18 @@
   }
 }
 ```
-* _open new terminal and run SQL ($ mysql -uroot -p{your_password})_
+* _open new terminal and run SQL 
+
+        $ mysql -uroot -p{your_password})_
 * _open MySQL Workbench_
 * _In terminal, navigate into Registrar.Solution/Registrar/ and enter the command $ dotnet restore, to install necessary packages_
-* _enter command $ dotnet build, to build program_
+* _enter this command to build the program
 
+       $ dotnet build to build program_
+* _enter command to build your database_
+
+        $ dotnet ef database update,
+* _check MySql Workbench to make sure the registrars database has been built_
 * _enter command $ dotnet run, to view program in your browser_
 
   
