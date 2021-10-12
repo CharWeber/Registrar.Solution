@@ -20,12 +20,14 @@ else
   <ul class="mx-auto">
   @foreach(var join in Model.StudentJoinEntities)
   {
-    <li>@join.Student.Name</li>
-    @using (Html.BeginForm("DeleteStudent", "Courses"))
-    {
-      @Html.Hidden("joinId", @join.CourseStudentId)
-      <input type="submit" value="Drop Student from Course"/>
-    }
+    <li>@join.Student.Name
+    <div class="form-div">
+      @using (Html.BeginForm("DeleteStudent", "Courses"))
+      {
+        @Html.Hidden("joinId", @join.CourseStudentId)
+        <input type="submit" value="Drop Student from Course"/>
+      }
+    </div></li>
   }
   </ul>
 }
@@ -53,16 +55,23 @@ else
 else
 {
   <br>
-  <p>This course is part of the following departments</p>
-  @foreach (var join in Model.DepartmentJoinEntities)
-  {
-  <p>@join.Department.Name</p>
-    @using (Html.BeginForm("DeleteDepartment", "Courses"))
+  <ul>
+    
+    <h3>This course is part of the following departments</h3>
+    @foreach (var join in Model.DepartmentJoinEntities)
     {
-      @Html.Hidden("joinId", @join.CourseDepartmentId)
-      <input type="submit" value="Drop Department from Course"/>
+    <li>@join.Department.Name
+      <div class="footer-div">
+        @using (Html.BeginForm("DeleteDepartment", "Courses"))
+        {
+          @Html.Hidden("joinId", @join.CourseDepartmentId)
+          <input type="submit" value="Drop Department from Course"/>
+        }
+        
+      </div></li>
     }
-  }
+    
+  </ul>
   @using (Html.BeginForm("AddDepartment", "Courses"))
   {
     @Html.HiddenFor(model => model.CourseId)
@@ -74,6 +83,5 @@ else
   }
 }
 
-<p>@Html.ActionLink("See all Courses", "Index")</p>
 <p>@Html.ActionLink("Edit this course", "Edit", new { id = Model.CourseId })</p>
 <p>@Html.ActionLink("Delete this course", "Delete", new { id = Model.CourseId })</p>

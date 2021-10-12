@@ -1,5 +1,19 @@
 @{
   Layout = "_Layout";
+  int CompletionCount = 0;
+  foreach(var join in Model.CourseJoinEntities)
+  {
+    foreach(var koin in ViewBag.CourseStudent)
+    {
+      if(koin.CourseId == join.CourseId)
+      {
+        if(koin.Completed)
+        {
+          CompletionCount++;
+        }
+      }
+    }
+  }
 }
 
 @model Registrar.Models.Department;
@@ -8,22 +22,33 @@
 
 <h3>@Model.Name</h3>
 
+
+@if (CompletionCount == 0)
+{
+  <p>Warning: no students have completed courses in this department.</p>
+}
+
+<p>@CompletionCount</p>
+
 @if (@Model.StudentJoinEntities.Count == 0)
 {
   <p>there are no students currently in this department</p>
 }
 else
 {
-  <h3>this department has the following students enrolled:</h3>
+  <h3>This department has the following students enrolled:</h3>
   <ul>
     @foreach(var join in Model.StudentJoinEntities)
     {
-      <li>@join.Student.Name</li>
-      @using (Html.BeginForm("DeleteStudent", "Departments"))
-      {
-      @Html.Hidden("joinId", @join.DepartmentStudentId)
-      <input type="submit" value="Drop Student from Department"/>
-      }
+      <li>@join.Student.Name
+      <div class="form-div">
+        @using (Html.BeginForm("DeleteStudent", "Departments"))
+        {
+        @Html.Hidden("joinId", @join.DepartmentStudentId)
+        <input type="submit" value="Drop Student from Department"/>
+        }
+      </div>
+      </li>
     }
   </ul>
 }
@@ -82,6 +107,5 @@ else
   }
 }
 
-<p>@Html.ActionLink("See all Departments", "Index")</p>
 <p>@Html.ActionLink("Edit this Department", "Edit", new { id = Model.DepartmentId })</p>
 <p>@Html.ActionLink("Delete this Department", "Delete", new { id = Model.DepartmentId })</p>

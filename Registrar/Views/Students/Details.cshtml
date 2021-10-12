@@ -8,7 +8,7 @@
 
 <h3>@Model.Name</h3>
 
-<h3>@Model.EnrollDate</h3>
+<h3>Enrolled @Model.EnrollDate.ToString("d")</h3>
 
 @if(@Model.CourseJoinEntities.Count == 0)
 {
@@ -42,7 +42,7 @@ else
     }
   }
   </ul>
-  <h3>This student has completed the following courses</h3>
+  <h3>This student has completed the following courses:</h3>
   <ul>
   @foreach(var join in Model.CourseJoinEntities)
   {
@@ -119,7 +119,6 @@ else
 {
   <p>This student already has a joint major. Delete a current major to be able to add another. Email your advisor for more information.</p>
 }
-
-<p>@Html.ActionLink("See all Students", "Index")</p>
+<br>
 <p>@Html.ActionLink("Edit this student", "Edit", new { id = Model.StudentId })</p>
 <p>@Html.ActionLink("Delete this student", "Delete", new { id = Model.StudentId })</p>

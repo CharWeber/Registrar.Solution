@@ -24,13 +24,20 @@ namespace Registrar.Controllers
 
     public ActionResult Create()
     {
+      ViewBag.NoDepartments = _db.Departments.ToList().Count == 0;
+      ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "Name");
       return View();
     }
 
     [HttpPost]
-    public ActionResult Create(Course course)
+    public ActionResult Create(Course course, int DepartmentId)
     {
       _db.Courses.Add(course);
+      _db.SaveChanges();
+      if (DepartmentId != 0)
+      {
+        _db.CourseDepartment.Add(new CourseDepartment() { DepartmentId = DepartmentId, CourseId = course.CourseId });
+      }
       _db.SaveChanges();
       return RedirectToAction("Index");
     }

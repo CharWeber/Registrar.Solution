@@ -10,11 +10,10 @@
   <p>there are no departments yet registered</p>
 }
 
-<ul>
+<p>
   @foreach (Department department in Model)
   {
-    <li>@Html.ActionLink($"{department.Name}", "Details", new {id = department.DepartmentId})</li>
+    @Html.ActionLink($"{department.Name}", "Details", new {id = department.DepartmentId})<br>
   }
-</ul>
+</p>
 <p>@Html.ActionLink("Register new Department", "Create")</p>
-<p>@Html.ActionLink("Home", "Index", "Home")</p>

@@ -2,7 +2,7 @@
   Layout = "_Layout";
 }
 @model Registrar.Models.Student
-
+<h1>Add a New Student</h1>
 @using (Html.BeginForm())
 {
   @Html.LabelFor(model => model.Name)
@@ -13,4 +13,3 @@
 
   <input type="submit" value="register this student"/>
 }
-<p>@Html.ActionLink("Home", "Index", "Home")</p>

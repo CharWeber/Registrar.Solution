@@ -3,6 +3,25 @@
 }
 <h1>Welcome to School!</h1>
 
-<p>@Html.ActionLink("Student List", "Index", "Students")</p>
+<!-- <p>@Html.ActionLink("Student List", "Index", "Students")</p>
 <p>@Html.ActionLink("Course List", "Index", "Courses")</p>
-<p>@Html.ActionLink("Department List", "Index", "Departments")</p>
+<p>@Html.ActionLink("Department List", "Index", "Departments")</p> -->
+
+  <div class="form-div">
+    @using (Html.BeginForm("Index", "Students"))
+    {
+      <input type="submit" value="Student List" class="btn btn-secondary"/>
+    }
+  </div>
+  <div class="form-div">
+    @using (Html.BeginForm("Index", "Courses"))
+    {
+      <input type="submit" value="Course List" class="btn btn-secondary"/>
+    }
+  </div>
+  <div class="form-div">
+    @using (Html.BeginForm("Index", "Departments"))
+    {
+      <input type="submit" value="Department List" class="btn btn-secondary"/>
+    }
+  </div>

@@ -3,16 +3,24 @@
 }
 @model Registrar.Models.Course
 
-<h3>Add a new course</h3>
-@using (Html.BeginForm())
+@if (@ViewBag.NoDepartments)
 {
-  @Html.LabelFor(model => model.Name)
-  @Html.TextBoxFor(model => model.Name)
-
-  @Html.LabelFor(model => model.Number)
-  @Html.TextBoxFor(model => model.Number)
-
-  <input class="btn btn-type="submit" value="Add new Course">
+  <p>Please add a department beofre creating a course</p>
 }
+else
+{
+  <h1>Add a New Course</h1>
+  @using (Html.BeginForm())
+  {
+    @Html.LabelFor(model => model.Name)
+    @Html.TextBoxFor(model => model.Name)
 
-<p>@Html.ActionLink("Show all courses", "Index")</p>
+    @Html.LabelFor(model => model.Number)
+    @Html.TextBoxFor(model => model.Number)
+
+    @Html.Label("Department")
+    @Html.DropDownList("DepartmentId")
+
+    <input class="btn btn-secondary" type="submit" value="Add new Course">
+  }
+}

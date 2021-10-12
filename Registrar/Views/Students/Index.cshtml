@@ -11,10 +11,15 @@
 }
 
 <p>
-@foreach (Student student in Model)
-{
-  @Html.ActionLink($"{student.Name}", "Details", new {id = student.StudentId})<br>
-}
+  @foreach (Student student in Model)
+  {
+    @Html.ActionLink($"{student.Name}", "Details", new {id = student.StudentId})<br>
+  }
 </p>
 
-<button class="btn btn-secondary"><a href="~/Students/Create">Add a new student</a></button>
+<div class="form-div">
+  @using (Html.BeginForm("Create", "Students", FormMethod.Get))
+  {
+    <input type="submit" value="Add a new student" class="btn btn-secondary" />
+  }
+</div>
